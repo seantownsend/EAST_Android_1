@@ -2,6 +2,7 @@ package com.east.training;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,12 +16,14 @@ import java.util.List;
 
 public class WelcomeActivity extends ActionBarActivity {
 
+    public static final String TAG = WelcomeActivity.class.getName();
     public static final String USER_NAME = "username";
     private List<String> mData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "in onCreate()");
         Bundle extras = getIntent().getExtras();
         for (int i=0; i < 100; i++) {
             mData.add("Item " + i + "");
