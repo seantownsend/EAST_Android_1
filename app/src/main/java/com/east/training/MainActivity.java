@@ -35,6 +35,7 @@ public class MainActivity extends ActionBarActivity {
                 } else {
                     Toast.makeText(MainActivity.this, "Login!", Toast.LENGTH_LONG).show();
                     Intent welcome = new Intent(MainActivity.this, WelcomeActivity.class);
+                    welcome.putExtra(WelcomeActivity.USER_NAME, mUsername.getText().toString());
                     startActivity(welcome);
                 }
             }

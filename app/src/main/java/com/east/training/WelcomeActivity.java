@@ -15,15 +15,21 @@ import java.util.List;
 
 public class WelcomeActivity extends ActionBarActivity {
 
+    public static final String USER_NAME = "username";
     private List<String> mData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
         for (int i=0; i < 100; i++) {
             mData.add("Item " + i + "");
         }
         setContentView(R.layout.activity_welcome);
+        if (extras != null) {
+            TextView header = (TextView) findViewById(R.id.header);
+            header.setText("Welcome " + extras.getString(USER_NAME) + "!");
+        }
         initViews();
     }
 
