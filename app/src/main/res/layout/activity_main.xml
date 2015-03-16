@@ -44,10 +44,11 @@
             android:id="@+id/login"
             android:layout_gravity="bottom"
             android:gravity="center"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:background="#0000FF"
-            android:textColor="#FFFFFF" />
+            android:background="@drawable/login_statelist_background"
+            android:textColor="#FFFFFF"
+            android:autoText="false" />
     </FrameLayout>
 
 </LinearLayout>

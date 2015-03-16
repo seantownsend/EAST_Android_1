@@ -1,42 +1,42 @@
 package com.east.training;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class WelcomeActivity extends ActionBarActivity {
 
-    private EditText mUsername;
-    private EditText mPassword;
+    private List<String> mData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        for (int i=0; i < 100; i++) {
+            mData.add("Item " + i + "");
+        }
+        setContentView(R.layout.activity_welcome);
         initViews();
     }
 
-    public void initViews() {
-        mUsername = (EditText) findViewById(R.id.username);
-        mPassword = (EditText) findViewById(R.id.password);
-        TextView login = (TextView) findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
+    private void initViews() {
+        ListView list = (ListView) findViewById(R.id.listView);
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mData);
+        list.setAdapter(adapter);
+        TextView logout = (TextView)findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mUsername.getText().toString().length() < 1 || mPassword.getText().toString().length() < 1) {
-                    Toast.makeText(MainActivity.this, "Username or Password Empty", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "Login!", Toast.LENGTH_LONG).show();
-                    Intent welcome = new Intent(MainActivity.this, WelcomeActivity.class);
-                    startActivity(welcome);
-                }
+                finish();
             }
         });
     }
@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_welcome, menu);
         return true;
     }
 
